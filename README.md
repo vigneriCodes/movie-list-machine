@@ -1,3 +1,21 @@
+# Pop Corn Movie App
+
+## Technologies Used
+
+- JavaScript
+- React / JSX
+- VSCode
+
+## Description
+
+_The App will showcase component composition...I think_
+
+## Known Bugs
+
+- I just got Lasik. My eyes are all weird right now.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
