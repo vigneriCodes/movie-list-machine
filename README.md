@@ -13,6 +13,7 @@ _The App will showcase component composition...I think_
 ## Known Bugs
 
 - I just got Lasik. My eyes are all weird right now.
+- 2 days later still weird. They say you're good after 2 days. but my eyes are all wonky right now.
 
 ---
 
