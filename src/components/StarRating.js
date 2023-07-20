@@ -24,6 +24,13 @@ function StarRating({
 	const [rating, setRating] = useState(defaultRating);
 	const [tempRating, setTempRating] = useState(0);
 
+	const textStyle = {
+		lineHeight: '1',
+		margin: '0',
+		color,
+		fontSize: `${size / 1.5}px`,
+	};
+
 	function handleRating(rating) {
 		setRating(rating);
 		onSetRating(rating);
@@ -36,12 +43,6 @@ function StarRating({
 	function handleHoverOut() {
 		setTempRating(0);
 	}
-	const textStyle = {
-		lineHeight: '1',
-		margin: '0',
-		color,
-		fontSize: `${size / 1.5}px`,
-	};
 
 	return (
 		<div style={containerStyle} className={className}>
