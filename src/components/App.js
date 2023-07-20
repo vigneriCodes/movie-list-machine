@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import NavBar from './NavBar';
 import Main from './Main';
@@ -57,8 +57,13 @@ const tempWatchedData = [
 ];
 
 export default function App() {
-	const [movies, setMovies] = useState(tempMovieData);
-	const [watched, setWatched] = useState(tempWatchedData);
+	const [movies, setMovies] = useState([]);
+	const [watched, setWatched] = useState([]);
+
+	useEffect(() => {
+		setMovies([...tempMovieData]);
+		setWatched([...tempWatchedData]);
+	}, []);
 
 	return (
 		<>
