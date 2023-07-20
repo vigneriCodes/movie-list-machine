@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Star from './Star';
 
@@ -33,7 +34,7 @@ function StarRating({
 
 	function handleRating(rating) {
 		setRating(rating);
-		onSetRating(rating);
+		onSetRating && onSetRating(rating);
 	}
 
 	function handleHoverIn(rating) {
@@ -69,3 +70,13 @@ function StarRating({
 }
 
 export default StarRating;
+
+StarRating.propTypes = {
+	maxRating: PropTypes.number,
+	color: PropTypes.string,
+	size: PropTypes.number,
+	className: PropTypes.string,
+	messages: PropTypes.array,
+	defaultRating: PropTypes.number,
+	onSetRating: PropTypes.func,
+};
