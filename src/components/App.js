@@ -56,12 +56,31 @@ const tempWatchedData = [
 	},
 ];
 
+const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
+
+// function fetchMovies() {
+// 	fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=summer`)
+// 		.then((res) => res.json())
+// 		.then((data) => setMovies(data.Search));
+// }
+
 export default function App() {
 	const [movies, setMovies] = useState([]);
 	const [watched, setWatched] = useState([]);
 
+	// useEffect(() => {
+	// 	setMovies([...tempMovieData]);
+	// 	setWatched([...tempWatchedData]);
+	// 	fetchMovies();
+	// }, []);
+
 	useEffect(() => {
-		setMovies([...tempMovieData]);
+		fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=summer`)
+			.then((res) => res.json())
+			.then((data) => setMovies(data.Search));
+	}, []);
+
+	useEffect(() => {
 		setWatched([...tempWatchedData]);
 	}, []);
 
