@@ -8,6 +8,7 @@ import Box from './Box';
 import MovieList from './MovieList';
 import WatchedMovieList from './WatchedMovieList';
 import WatchedSummary from './WatchedSummary';
+import Loader from './Loader';
 
 const tempMovieData = [
 	{
@@ -61,17 +62,19 @@ const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 export default function App() {
 	const [movies, setMovies] = useState([]);
 	const [watched, setWatched] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const query = 'summer';
 
 	useEffect(() => {
 		async function fetchMovies() {
+			setIsLoading(true);
 			const res = await fetch(
 				`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`
 			);
 			const data = await res.json();
 			setMovies(data.Search);
-			console.log(data.Search);
+			setIsLoading(false);
 		}
 		fetchMovies();
 	}, []);
@@ -88,9 +91,7 @@ export default function App() {
 			</NavBar>
 
 			<Main>
-				<Box>
-					<MovieList movies={movies} />
-				</Box>
+				<Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
 
 				<Box>
 					<WatchedSummary watched={watched} />
