@@ -12,6 +12,9 @@
 		"build": "react-scripts build",
 		"eject": "react-scripts eject"
 	},
+	"devDependencies": {
+		"babel-preset-react-app": "@babel/plugin-proposal-private-property-in-object"
+	},
 	"eslintConfig": {
 		"extends": [
 			"react-app",
