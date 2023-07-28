@@ -14,7 +14,7 @@ const starContainerStyle = {
 };
 
 function StarRating({
-	maxRating = 10,
+	maxRating = 5,
 	color = '#fcc419',
 	size = 48,
 	className = '',
