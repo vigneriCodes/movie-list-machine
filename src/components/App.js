@@ -74,7 +74,6 @@ export default function App() {
 	function handleDeleteWatched(id) {
 		setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
 	}
-	console.log('App render/rerender');
 
 	return (
 		<>

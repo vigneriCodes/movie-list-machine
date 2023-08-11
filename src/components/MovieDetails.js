@@ -58,7 +58,6 @@ function MovieDetails({
 		const callBack = (e) => {
 			if (e.code === 'Escape') {
 				handleCloseMovie();
-				console.log('CLOSING');
 			}
 		};
 		document.addEventListener('keydown', callBack);
