@@ -5,7 +5,7 @@ import Loader from './Loader';
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
-function MovieDetails({ selectedId, handleCloseMovie }) {
+function MovieDetails({ selectedId, handleCloseMovie, handleAddWatched }) {
 	const [movie, setMovie] = useState({});
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -33,6 +33,20 @@ function MovieDetails({ selectedId, handleCloseMovie }) {
 		}
 		getMovieDetails();
 	}, [selectedId]);
+
+	function handleAdd() {
+		const newWatchedMovie = {
+			imdbID: selectedId,
+			title,
+			poster,
+			imdbRating: Number(imdbRating),
+			runtime: Number(runtime.split(' ').at(0)),
+		};
+
+		handleAddWatched(newWatchedMovie);
+		handleCloseMovie();
+	}
+
 	return (
 		<div className='details'>
 			{isLoading ? (
@@ -59,6 +73,10 @@ function MovieDetails({ selectedId, handleCloseMovie }) {
 					<section>
 						<div className='rating'>
 							<StarRating maxRating={10} size={24} />
+
+							<button className='btn-add' onClick={handleAdd}>
+								+ Add to list
+							</button>
 						</div>
 						<p>
 							<em>{plot}</em>
