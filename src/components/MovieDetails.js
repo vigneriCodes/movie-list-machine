@@ -5,9 +5,20 @@ import Loader from './Loader';
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
-function MovieDetails({ selectedId, handleCloseMovie, handleAddWatched }) {
+function MovieDetails({
+	selectedId,
+	handleCloseMovie,
+	handleAddWatched,
+	watched,
+}) {
 	const [movie, setMovie] = useState({});
 	const [isLoading, setIsLoading] = useState(false);
+	const [userRating, setUserRating] = useState('');
+
+	const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
+	const watchedUserRating = watched.find(
+		(movie) => movie.imdbID === selectedId
+	)?.userRating;
 
 	const {
 		Title: title,
@@ -41,6 +52,7 @@ function MovieDetails({ selectedId, handleCloseMovie, handleAddWatched }) {
 			poster,
 			imdbRating: Number(imdbRating),
 			runtime: Number(runtime.split(' ').at(0)),
+			userRating,
 		};
 
 		handleAddWatched(newWatchedMovie);
@@ -72,11 +84,23 @@ function MovieDetails({ selectedId, handleCloseMovie, handleAddWatched }) {
 					</header>
 					<section>
 						<div className='rating'>
-							<StarRating maxRating={10} size={24} />
+							{!isWatched ? (
+								<>
+									<StarRating
+										maxRating={10}
+										size={24}
+										onSetRating={setUserRating}
+									/>
 
-							<button className='btn-add' onClick={handleAdd}>
-								+ Add to list
-							</button>
+									{userRating > 0 && (
+										<button className='btn-add' onClick={handleAdd}>
+											+ Add to list
+										</button>
+									)}
+								</>
+							) : (
+								<p>You rated this movie: 🌟{watchedUserRating}</p>
+							)}
 						</div>
 						<p>
 							<em>{plot}</em>
