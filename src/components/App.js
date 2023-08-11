@@ -19,7 +19,7 @@ export default function App() {
 	const [watched, setWatched] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState('');
-	const [query, setQuery] = useState('summer');
+	const [query, setQuery] = useState('');
 	const [selectedId, setSelectedId] = useState(null);
 
 	useEffect(() => {
@@ -56,6 +56,7 @@ export default function App() {
 			setError('');
 			return;
 		}
+		handleCloseMovie();
 		fetchMovies();
 	}, [query]);
 
