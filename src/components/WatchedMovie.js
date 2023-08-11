@@ -2,7 +2,7 @@ import React from 'react';
 
 // why are movie.Poster and movie.Title capitalized?
 
-function WatchedMovie({ movie }) {
+function WatchedMovie({ movie, handleDeleteWatched }) {
 	return (
 		<li key={movie.imdbID}>
 			<img src={movie.poster} alt={`${movie.title} poster`} />
@@ -20,6 +20,13 @@ function WatchedMovie({ movie }) {
 					<span>⏳</span>
 					<span>{movie.runtime} min</span>
 				</p>
+
+				<button
+					className='btn-delete'
+					onClick={() => handleDeleteWatched(movie.imdbID)}
+				>
+					X
+				</button>
 			</div>
 		</li>
 	);
