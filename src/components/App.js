@@ -23,15 +23,12 @@ export default function App() {
 	const [selectedId, setSelectedId] = useState(null);
 
 	useEffect(() => {
-		const controller = new AbortController();
-
 		async function fetchMovies() {
 			try {
 				setIsLoading(true);
 				setError('');
 				const res = await fetch(
-					`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`,
-					{ signal: controller.signal }
+					`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`
 				);
 
 				if (!res.ok)
@@ -57,10 +54,6 @@ export default function App() {
 			return;
 		}
 		fetchMovies();
-
-		return function () {
-			controller.abort();
-		};
 	}, [query]);
 
 	function handleSelectMovie(id) {
