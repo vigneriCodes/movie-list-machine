@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-function Search({ query, setQuery }) {
-	const [searchInput, setSearchInput] = useState('');
+function Search({ setQuery }) {
+	const [searchInput, setSearchInput] = useState('Summer');
 
 	useEffect(() => {
 		const timeOutID = setTimeout(() => setQuery(searchInput), 500);
