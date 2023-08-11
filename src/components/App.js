@@ -79,10 +79,6 @@ export default function App() {
 		fetchMovies();
 	}, [query]);
 
-	// useEffect(() => {
-	// 	setWatched([...tempWatchedData]);
-	// }, []);
-
 	function handleSelectMovie(id) {
 		setSelectedId((selectedId) => (id === selectedId ? null : id));
 	}
@@ -121,6 +117,7 @@ export default function App() {
 							selectedId={selectedId}
 							handleCloseMovie={handleCloseMovie}
 							handleAddWatched={handleAddWatched}
+							watched={watched}
 						/>
 					) : (
 						<>
