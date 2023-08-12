@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 function Search({ setQuery }) {
 	const [searchInput, setSearchInput] = useState('');
+
 	const inputElement = useRef(null);
 
 	useEffect(() => {
