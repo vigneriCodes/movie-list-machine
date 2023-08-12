@@ -11,6 +11,7 @@ import WatchedSummary from './WatchedSummary';
 import Loader from './Loader';
 import ErrorMessage from './ErrorMessage';
 import MovieDetails from './MovieDetails';
+
 import { useMovies } from './hooks/useMovies';
 import { useLocalStorageState } from './hooks/useLocalStorageState';
 
