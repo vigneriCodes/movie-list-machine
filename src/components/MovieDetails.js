@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import StarRating from './StarRating';
 import Loader from './Loader';
+import { useKey } from './hooks/useKey';
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
@@ -51,6 +52,8 @@ function MovieDetails({
 		getMovieDetails();
 	}, [selectedId]);
 
+	useKey('Escape', handleCloseMovie);
+
 	useEffect(() => {
 		if (!title) return;
 		document.title = `Movie: ${title}`;
@@ -58,19 +61,6 @@ function MovieDetails({
 			document.title = 'Pop-Corn';
 		};
 	}, [title]);
-
-	useEffect(() => {
-		const callBack = (e) => {
-			if (e.code === 'Escape') {
-				handleCloseMovie();
-			}
-		};
-		document.addEventListener('keydown', callBack);
-
-		return () => {
-			document.removeEventListener('keydown', callBack);
-		};
-	}, [handleCloseMovie]);
 
 	function handleAdd() {
 		const newWatchedMovie = {
