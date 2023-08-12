@@ -54,7 +54,6 @@ function MovieDetails({
 	useEffect(() => {
 		if (!title) return;
 		document.title = `Movie: ${title}`;
-
 		return function () {
 			document.title = 'Pop-Corn';
 		};
