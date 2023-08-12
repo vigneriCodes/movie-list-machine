@@ -10,6 +10,12 @@ function Search({ setQuery }) {
 		};
 	}, [searchInput, setQuery]);
 
+	useEffect(() => {
+		const element = document.querySelector('.search');
+		console.log(element);
+		element.focus();
+	}, []);
+
 	return (
 		<input
 			className='search'
