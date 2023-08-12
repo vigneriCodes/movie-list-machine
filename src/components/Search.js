@@ -1,21 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import { useKey } from './hooks/useKey';
+
 function Search({ setQuery }) {
 	const [searchInput, setSearchInput] = useState('');
 
 	const inputElement = useRef(null);
 
-	useEffect(() => {
-		const callBack = (e) => {
-			if (document.activeElement === inputElement.current) return;
-			if (e.code === 'Enter') {
-				inputElement.current.focus();
-				setSearchInput('');
-			}
-		};
-		document.addEventListener('keydown', callBack);
-		return () => document.addEventListener('keydown', callBack);
-	}, [setSearchInput]);
+	useKey('Enter', () => {
+		if (document.activeElement === inputElement.current) return;
+		inputElement.current.focus();
+		setSearchInput('');
+	});
 
 	useEffect(() => {
 		const timeOutID = setTimeout(() => setQuery(searchInput), 500);
@@ -23,7 +19,6 @@ function Search({ setQuery }) {
 			clearTimeout(timeOutID);
 		};
 	}, [searchInput, setQuery]);
-
 	return (
 		<input
 			className='search'
