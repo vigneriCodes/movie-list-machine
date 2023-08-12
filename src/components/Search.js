@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 function Search({ setQuery }) {
 	const [searchInput, setSearchInput] = useState('');
+
+	const inputElement = useRef(null);
+
+	useEffect(() => {
+		inputElement.current.focus();
+	}, []);
 
 	useEffect(() => {
 		const timeOutID = setTimeout(() => setQuery(searchInput), 500);
@@ -10,12 +16,6 @@ function Search({ setQuery }) {
 		};
 	}, [searchInput, setQuery]);
 
-	useEffect(() => {
-		const element = document.querySelector('.search');
-		console.log(element);
-		element.focus();
-	}, []);
-
 	return (
 		<input
 			className='search'
@@ -23,6 +23,7 @@ function Search({ setQuery }) {
 			placeholder='Search movies...'
 			value={searchInput}
 			onChange={(e) => setSearchInput(e.target.value)}
+			ref={inputElement}
 		/>
 	);
 }
