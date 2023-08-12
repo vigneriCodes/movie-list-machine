@@ -12,16 +12,12 @@ import Loader from './Loader';
 import ErrorMessage from './ErrorMessage';
 import MovieDetails from './MovieDetails';
 import { useMovies } from './hooks/useMovies';
+import { useLocalStorageState } from './hooks/useLocalStorageState';
 
 export default function App() {
 	const [query, setQuery] = useState('');
 	const [selectedId, setSelectedId] = useState(null);
-
-	// setting state with a call back to access the value set in the 2nd useEffect --must be pure and accept no args
-	const [watched, setWatched] = useState(() => {
-		const storedValue = localStorage.getItem('watched');
-		return JSON.parse(storedValue);
-	});
+	const [watched, setWatched] = useLocalStorageState([], 'watched');
 
 	function handleSelectMovie(id) {
 		setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -40,10 +36,6 @@ export default function App() {
 	}
 
 	const { movies, isLoading, error } = useMovies(query);
-
-	useEffect(() => {
-		localStorage.setItem('watched', JSON.stringify(watched));
-	}, [watched]);
 
 	return (
 		<>
