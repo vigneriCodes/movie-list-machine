@@ -21,7 +21,7 @@ export default function App() {
 	const [query, setQuery] = useState('');
 	const [selectedId, setSelectedId] = useState(null);
 
-	// const [watched, setWatched] = useState([]);
+	// setting state with a call back to access the value set in the 2nd useEffect --must be pure and accept no args
 	const [watched, setWatched] = useState(() => {
 		const storedValue = localStorage.getItem('watched');
 		return JSON.parse(storedValue);
@@ -37,8 +37,6 @@ export default function App() {
 
 	function handleAddWatched(movie) {
 		setWatched((watched) => [...watched, movie]);
-
-		// localStorage.setItem('watched', JSON.stringify([...watched, movie]));
 	}
 
 	function handleDeleteWatched(id) {
